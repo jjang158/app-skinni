@@ -4,26 +4,28 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-val LightBeige = Color(0xFFFFF9F5)
 private val CustomColorScheme = lightColorScheme(
-    primary = Color(0xFF6200EE),            // bg-primary
-    onPrimary = Color.White,                // text-primary-content
-    secondary = Color(0xFF03DAC6),          // bg-accent-1
-    onSecondary = Color(0xFF333333),        // text-dark
-    tertiary = Color(0xFFB7AFC9),           // bg-accent-2
-    error = Color(0xFFD87A77),              // bg-error
-    onError = LightBeige,           // ✅ 에러 대비용 텍스트 색상도 베이지
-    background = LightBeige,        // ✅ 배경색
-    onBackground = Color(0xFF333333),
-    surface = LightBeige,
-    onSurface = Color(0xFF333333)
+    primary = PrimaryGreen,          // 버튼, 주요 액션 색상
+    onPrimary = ButtonTextWhite,     // 버튼 텍스트 하얀색
+
+    secondary = PrimaryGreen,        // 필요시 동일한 그린 계열 사용
+    onSecondary = TextDarkGray,
+
+    background = BackgroundBeige,    // 앱 전체 배경 베이지
+    onBackground = TextDarkGray,    // 배경 위 텍스트 색상
+
+    surface = BackgroundBeige,       // 카드, 표면 배경 등
+    onSurface = TextDarkGray,        // 표면 위 텍스트
+
+    error = Color(0xFFD87A77),       // 에러 색상 (기존 유지)
+    onError = BackgroundBeige        // 에러 위 텍스트는 베이지
 )
 
 @Composable
 fun SkinnyappTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = CustomColorScheme,
-        typography = Typography(),
+        typography = Typography(),  // 필요시 커스텀 타이포그래피 추가 가능
         content = content
     )
 }

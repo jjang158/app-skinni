@@ -10,9 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
-import com.skinny.skinnyapp.ui.theme.SkinnyappTheme
 import kotlinx.coroutines.delay
-
 
 @Composable
 fun SplashScreen(navController: NavController) {
@@ -26,14 +24,14 @@ fun SplashScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF4E9D8)),
+            .background(Color(0xFFF4E9D8)),  // 배경 베이지 하드코딩
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = "Skinni",
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF9DB8A5)
+            color = Color(0xFF333333)       // 텍스트 다크 그레이 하드코딩
         )
     }
 }
@@ -41,19 +39,17 @@ fun SplashScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SkinnyappTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFFFFF9F5)),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "Skinni",
-                fontSize = 36.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF3E4651)
-            )
-        }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF4E9D8)),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Skinni",
+            fontSize = 36.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF333333)
+        )
     }
 }

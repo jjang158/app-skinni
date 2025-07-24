@@ -18,11 +18,12 @@ fun MainScreen(navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF4E9D8))
+            .background(Color(0xFFF4E9D8))   // 배경 베이지 하드코딩
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color(0xFFF4E9D8))  // 컬럼에 배경 지정
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
@@ -37,7 +38,6 @@ fun MainScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(30.dp))
 
-
             Button(
                 onClick = { navController.navigate("diagnosis") },
                 modifier = Modifier
@@ -45,7 +45,7 @@ fun MainScreen(navController: NavController) {
                     .height(56.dp),
                 shape = MaterialTheme.shapes.medium,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF9DB8A5)
+                    containerColor = Color(0xFF9DB8A5)   // 버튼 그린 하드코딩
                 )
             ) {
                 Text("분석하기", fontSize = 18.sp)
@@ -58,15 +58,15 @@ fun MainScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    // NavController 없이 사용할 수 있도록 Dummy Composable 만듦
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFFF9F5))
+            .background(Color(0xFFF4E9D8))
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color(0xFFF4E9D8))  // 컬럼에 배경 지정
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
@@ -82,7 +82,7 @@ fun MainScreenPreview() {
             Spacer(modifier = Modifier.height(30.dp))
 
             Button(
-                onClick = { /* 미리보기에서는 클릭 동작 없음 */ },
+                onClick = { /* 미리보기에서 클릭없음 */ },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(80.dp),
@@ -96,4 +96,3 @@ fun MainScreenPreview() {
         }
     }
 }
-
