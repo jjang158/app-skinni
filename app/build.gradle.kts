@@ -59,4 +59,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation("androidx.compose.material:material-icons-extended")
+    // CameraX 라이브러리
+    implementation("androidx.camera:camera-core:1.1.0")
+    implementation("androidx.camera:camera-camera2:1.1.0")
+    implementation("androidx.camera:camera-lifecycle:1.1.0")
+    implementation("androidx.camera:camera-view:1.1.0")
+// Compose 권한 관리용 라이브러리 (Accompanist)
+    implementation("com.google.accompanist:accompanist-permissions:0.31.5-beta")
+// Compose 기본 라이브러리들 (기존에 없으면 추가)
+    implementation("androidx.activity:activity-compose:1.7.0")
+    implementation("androidx.compose.ui:ui:1.4.3")
+    implementation("androidx.compose.material3:material3:1.1.0")
 }

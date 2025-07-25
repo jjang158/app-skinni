@@ -9,16 +9,20 @@ import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
-import androidx.compose.ui.unit.*
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun DiagnosisScreen(navController: NavController) {
+fun DiagnosisScreen(
+    navController: NavController,
+    onLaunchCamera: () -> Unit,
+    onPickGallery: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -34,19 +38,19 @@ fun DiagnosisScreen(navController: NavController) {
                 .fillMaxWidth()
                 .aspectRatio(3f / 4f)
                 .clip(RectangleShape)
-                .background(Color(0xFFE0E0E0))    // FrameGray 하드코딩
-                .border(2.dp, Color(0xFFBDBDBD)),  // BorderGray 하드코딩
+                .background(Color(0xFFE0E0E0))    // FrameGray
+                .border(2.dp, Color(0xFFBDBDBD)), // BorderGray
             contentAlignment = Alignment.Center
         ) {
             Icon(
                 imageVector = Icons.Default.CameraAlt,
                 contentDescription = "Camera Icon",
                 modifier = Modifier.size(64.dp),
-                tint = Color(0xFF616161)         // IconDarkGray 하드코딩
+                tint = Color(0xFF616161)         // IconDarkGray
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         // 버튼: 카메라 / 이미지 등록
         Row(
@@ -54,15 +58,15 @@ fun DiagnosisScreen(navController: NavController) {
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { /* TODO: 카메라 구현 */ },
+                onClick = { onLaunchCamera() },
                 modifier = Modifier.weight(1f),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9DB8A5))  // PrimaryGreen 하드코딩
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9DB8A5))
             ) {
-                Text("카메라", color = Color.White)  // ButtonTextWhite 하드코딩
+                Text("카메라", color = Color.White)
             }
 
             Button(
-                onClick = { /* TODO: 이미지 등록 구현 */ },
+                onClick = { onPickGallery() },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9DB8A5))
             ) {
@@ -70,7 +74,7 @@ fun DiagnosisScreen(navController: NavController) {
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(30.dp))
 
         // 분석하기 버튼
         Button(
@@ -100,5 +104,9 @@ class FakeNavController(context: Context) : NavController(context) {
 @Composable
 fun DiagnosisScreenPreview() {
     val context = LocalContext.current
-    DiagnosisScreen(navController = FakeNavController(context))
+    DiagnosisScreen(
+        navController = FakeNavController(context),
+        onLaunchCamera = { /* Preview용 */ },
+        onPickGallery = { /* Preview용 */ }
+    )
 }
