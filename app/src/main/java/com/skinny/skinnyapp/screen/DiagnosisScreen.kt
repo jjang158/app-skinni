@@ -1,6 +1,7 @@
 package com.skinny.skinnyapp.ui.screen
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -16,13 +17,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.skinny.skinnyapp.api.ApiClient
+import com.skinny.skinnyapp.api.model.SkinViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.skinny.skinnyapp.api.model.ProductViewModel
 
 @Composable
 fun DiagnosisScreen(
     navController: NavController,
     onLaunchCamera: () -> Unit,
-    onPickGallery: () -> Unit
+    onPickGallery: () -> Unit,
+    viewModel: SkinViewModel = viewModel(),
+    productModel: ProductViewModel = viewModel(),
 ) {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -79,7 +88,30 @@ fun DiagnosisScreen(
         // 분석하기 버튼
         Button(
             onClick = {
-                navController.navigate("result")
+                // 피부분석 api 테스트
+//                viewModel.analyzeSkin(
+//                    base64Image = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxAAPwCdABmX/9k=",
+//                    onSuccess = {
+//                        Toast.makeText(context, "API Success", Toast.LENGTH_SHORT).show()
+//                    },
+//                    onError = { errorMessage ->
+//                        Toast.makeText(context, "분석 실패: $errorMessage", Toast.LENGTH_SHORT).show()
+//                    }
+//                )
+
+                // 제품추천 api 테스트
+                productModel.recommendProduct(
+                    wrinkle = 26,
+                    pore = 990,
+                    elasticity = 52,
+                    moisture = 45,
+                    onSuccess = {
+                        Toast.makeText(context, "API Success", Toast.LENGTH_SHORT).show()
+                    },
+                    onError = { errorMessage ->
+                        Toast.makeText(context, "추천 실패: $errorMessage", Toast.LENGTH_SHORT).show()
+                    }
+                )
             },
             modifier = Modifier
                 .fillMaxWidth()
