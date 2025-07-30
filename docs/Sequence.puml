@@ -1,0 +1,38 @@
+@startuml
+actor User
+participant ImagePickerScreen
+participant DiagnosisScreen
+participant ItemListScreen
+participant AnalysisViewModel
+participant Server
+
+User -> ImagePickerScreen: '진단하기' 버튼 터치
+ImagePickerScreen -> AnalysisViewModel: startAnalysis(image)
+note right of AnalysisViewModel: UiState = Loading
+AnalysisViewModel -> DiagnosisScreen: 화면 상태 변경 알림
+DiagnosisScreen -> User: 로딩 스피너 표시
+
+AnalysisViewModel -> Server: 이미지 진단 요청
+Server --> AnalysisViewModel: 진단 결과 수신
+
+alt 진단 성공
+    note right of AnalysisViewModel: UiState = Success(result)
+    AnalysisViewModel -> DiagnosisScreen: 화면 상태 변경 알림
+    DiagnosisScreen -> User: 진단 결과, '추천 제품 보기' 버튼 표시
+
+    User -> DiagnosisScreen: '추천 제품 보기' 버튼 터치
+    DiagnosisScreen -> ItemListScreen: 화면 전환
+
+    ' ItemListScreen은 ViewModel의 상태를 구독하고 있으므로,
+    ' 별도의 요청 없이도 이미 ViewModel에 저장된 제품 정보를 바로 표시할 수 있음
+    ItemListScreen -> User: 추천 제품 리스트 표시
+
+    User -> ItemListScreen: '처음으로 돌아가기' 버튼 터치
+    ItemListScreen -> ImagePickerScreen: 이전 화면으로 전환
+
+else 진단 실패
+    note right of AnalysisViewModel: UiState = Error
+    AnalysisViewModel -> DiagnosisScreen: 화면 상태 변경 알림
+    DiagnosisScreen -> User: 오류 메시지, '재시도' 버튼 표시
+end
+@enduml
