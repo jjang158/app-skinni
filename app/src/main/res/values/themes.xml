@@ -1,5 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- ★★★ Android 16 호환 기본 테마 ★★★ -->
+    <style name="Theme.SkinnyApplication" parent="Theme.Material3.DayNight">
+        <!-- Material 3 기본 색상 (XML에서는 최소한만) -->
+        <item name="android:statusBarColor">@color/status_bar_light</item>
+        <item name="android:navigationBarColor">@color/navigation_bar_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o">true</item>
 
-    <style name="Theme.SkinnyApplication" parent="android:Theme.Material.Light.NoActionBar" />
+        <!-- Android 16 지원을 위한 추가 설정 -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="api_level_29">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="api_level_29">false</item>
+    </style>
+
+    <!-- ★★★ Splash Screen 테마 (Android 16 최적화) ★★★ -->
+    <style name="Theme.SkinnyApplication.Starting" parent="Theme.SkinnyApplication">
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <!-- Android 16 Splash Screen 설정 -->
+        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@android:color/transparent</item>
+        <item name="android:windowSplashScreenAnimationDuration">0</item>
+    </style>
 </resources>

@@ -1,4 +1,4 @@
-package com.skinny.skinnyapp.ui.screen
+package com.skinny.skinnyapp.camera
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.skinny.skinnyapp.ui.camera.CameraPreview
+import android.net.Uri
 
 @Composable
-fun CameraScreen(navController: NavController) {
+fun CameraScreen(navController: NavController, onImageCaptured: (Uri) -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
